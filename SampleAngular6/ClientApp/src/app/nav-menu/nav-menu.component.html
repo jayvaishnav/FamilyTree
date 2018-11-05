@@ -1,0 +1,31 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Family Tree</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+        <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
+          <span class='glyphicon glyphicon-home'></span> Home
+        </a>
+      </li>
+      <li class="nav-item" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" [routerLink]='["/family-tree"]' (click)='collapse()'>
+          <span class='glyphicon glyphicon-th-list'></span> My Family
+        </a>
+      </li>
+      <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="isLoggedIn | async">
+        <a class="nav-link" [routerLink]='["/login"]' (click)='collapse()'>
+          <span class='glyphicon glyphicon-th-list'></span> Login
+        </a>
+      </li>
+
+    
+    </ul>
+   
+  </div>
+</nav>

@@ -1,0 +1,96 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-success" role="alert">
+      Selected Items: {{values}}
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <div class="form-group">
+          <label>
+            <strong>Configuration</strong>
+          </label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="config.hasAllCheckBox" id="hasAllCheckBox">
+            <label class="form-check-label" for="hasAllCheckBox">hasAllCheckBox</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="config.hasFilter" id="hasFilter">
+            <label class="form-check-label" for="hasFilter"> hasFilter</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="config.hasCollapseExpand" id="hasCollapseExpand">
+            <label class="form-check-label" for="hasCollapseExpand">hasCollapseExpand</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="config.decoupleChildFromParent" id="decoupleChildFromParent">
+            <label class="form-check-label" for="decoupleChildFromParent">decoupleChildFromParent</label>
+          </div>
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="maxHeight">maxHeight</label>
+              <input type="text" class="form-control mx-sm-3" id="maxHeight" placeholder="maxHeight" [(ngModel)]="config.maxHeight">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <div class="form-group">
+          <label>
+            <strong>ngx-treeview</strong>
+          </label>
+          <ngx-treeview [config]="config" [items]="items" [itemTemplate]="itemTemplate" (filterChange)="onFilterChange($event)" (selectedChange)="values = $event">
+          </ngx-treeview>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
+  <div class="form-inline row-item">
+    <i *ngIf="item.children" (click)="onCollapseExpand()" aria-hidden="true" class="fa" [class.fa-caret-right]="item.collapsed"
+       [class.fa-caret-down]="!item.collapsed"></i>
+    <div class="form-check">
+
+      <label class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
+        {{item.text}}
+      </label>
+      <label class="form-check-label">
+        <i class="fa fa-trash" aria-hidden="true" title="Remove" (click)="removeItem(item)"></i>
+      </label>
+      <label class="form-check-label">
+        <i class="fa fa-plus" aria-hidden="true" title="Add" (click)="addItem(item,content)"></i>
+      </label>
+      <label class="form-check-label">
+        <i class="fa fa-pencil" aria-hidden="true" title="Edit" (click)="editItem(item,content)"></i>
+      </label>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add/Edit Tree</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="form" (ngSubmit)="f.form.valid && saveTreeNode()" #f="ngForm" novalidate>
+      <div class="form-group">        
+        <div class="input-group">
+          <input id="firstname" class="form-control" value="" placeholder="First Name" [(ngModel)]="model.firstname" name="firstname">
+          <input id="lastname" class="form-control" placeholder="Last Name" [(ngModel)]="model.lastname" name="lastname">
+          <button [disabled]="loading" class="btn btn-primary">Save Node</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</ng-template>
