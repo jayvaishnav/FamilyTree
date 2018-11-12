@@ -1,12 +1,12 @@
 import { Component, OnInit,ViewChild, ViewContainerRef } from '@angular/core';
 import { TreeviewItem, TreeviewComponent, DownlineTreeviewItem, TreeviewHelper, TreeviewConfig } from 'ngx-treeview';
-import { FamilyTreeService } from '../_services/familytree.service';
-import { AlertService } from '../_services/alert.service';
+import { FamilyTreeService } from '../../_services/familytree.service';
+import { AlertService } from '../../_services/alert.service';
 import { isNil, remove, reverse } from 'lodash';
 import { AlertComponent } from '../alert/alert.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FamilyTree } from '../_models/FamilyTree';
-import { RequestOptionService } from '../_services/requestoption.service';
+import { FamilyTree } from '../../_models/FamilyTree';
+import { RequestOptionService } from '../../_services/requestoption.service';
 import { fadeInContent } from '@angular/material';
 
 

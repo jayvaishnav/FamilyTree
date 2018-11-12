@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthenticationService } from '../_services/authentication.service';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-nav-menu',
